@@ -82,6 +82,9 @@ IGNORE_LINE_RULES: List[Tuple[re.Pattern, str]] = [
     (re.compile(r"^\s*[\-]?\s*lastResync\s*:\s*.*$", re.IGNORECASE), "lastResync: __IGNORED__"),
     (re.compile(r"^\s*[\-]?\s*observedGeneration\s*:\s*.*$", re.IGNORECASE), "observedGeneration: __IGNORED__"),
     (re.compile(r"^\s*[\-]?\s*managedFields\s*:\s*.*$", re.IGNORECASE), "managedFields: __IGNORED_SECTION__"),
+    (re.compile(r"^\s*[\-]?\s*Universal time\s*:\s*.*$", re.IGNORECASE), "Universal time: __IGNORED_SECTION__"),
+    (re.compile(r"^\s*[\-]?\s*resourceVersion\s*:\s*.*$", re.IGNORECASE), "resourceVersion: __IGNORED_SECTION__"),
+    (re.compile(r"^\s*[\-]?\s*RTC time\s*:\s*.*$", re.IGNORECASE), "RTC time: __IGNORED_SECTION__"),
 ]
 
 YAML_IGNORE_SECTION_STARTS: List[re.Pattern] = [
@@ -1316,7 +1319,7 @@ class App:
         info_frame = ttk.LabelFrame(frm, text="📋 무시되는 필드 (자동 제외)")
         info_frame.pack(fill="x", pady=8)
         ignored_fields_text = (
-            "uid • creationTimestamp • generation • lastTransitionTime • lastResync • observedGeneration • managedFields\n"
+            "uid • creationTimestamp • generation • lastTransitionTime • lastResync • observedGeneration • managedFields • universal time • resourceVersion • RTC time\n"
             "⚠️ 위 필드들은 버전/실행환경마다 변경되므로 자동으로 비교에서 제외됩니다"
         )
         ttk.Label(info_frame, text=ignored_fields_text, wraplength=900, justify="left", foreground="gray40").pack(anchor="w", padx=8, pady=6)
